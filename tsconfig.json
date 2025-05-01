@@ -1,0 +1,50 @@
+{
+  // Base settings -----------------------------------------------------------
+  "compilerOptions": {
+    /* Language & emit ------------------------------------------------------ */
+    "target": "ES2022",                // Modern async/await, top-level await
+    "lib": ["ES2022"],                 // No DOM; pure server runtime
+    "module": "NodeNext",              // ESM by default, CJS via .cjs when needed
+    "moduleResolution": "NodeNext",    // Mirrors Node’s loader rules
+    "resolveJsonModule": true,         // Allow `import x from "./data.json"`
+    "esModuleInterop": true,           // Smooth interop w/ CommonJS deps
+
+    /* Type safety & lint-like guards -------------------------------------- */
+    "strict": true,                    // Enables all strict flags
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "useUnknownInCatchVariables": true,
+    "skipLibCheck": false,             // Keep lib type checking on
+    "forceConsistentCasingInFileNames": true,
+
+    /* Project structure & emit -------------------------------------------- */
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "declaration": true,               // Generate .d.ts for library reuse
+    "declarationMap": true,
+    "sourceMap": true,
+    "incremental": true,               // Speeds up repeated builds
+    "tsBuildInfoFile": "./.tsbuildinfo",
+
+    /* Decorators & experimental features ---------------------------------- */
+    "experimentalDecorators": true,    // Needed for class-validators, TypeORM, etc.
+    "emitDecoratorMetadata": false,    // Off by default (turn on if reflection needed)
+
+    /* JSX (keep disabled for pure back-end) ------------------------------- */
+    "jsx": "preserve",
+
+    /* Diagnostics output -------------------------------------------------- */
+    "pretty": true,
+    "noEmitOnError": true
+  },
+
+  // Include/Exclude globs ---------------------------------------------------
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"],
+
+  // Speed up IDE experiences while retaining strictness --------------------
+  "ts-node": {
+    "transpileOnly": true,             // Fast REPLs; build step catches the rest
+    "files": true
+  }
+}
