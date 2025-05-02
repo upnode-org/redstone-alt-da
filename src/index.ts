@@ -37,10 +37,6 @@ async function submit(commitment: string) {
 }
 
 async function main() {
-  await Moralis.start({
-    apiKey: process.env.MORALIS_API_KEY!,
-  });
-
   const response = await Moralis.EvmApi.transaction.getWalletTransactions({
     chain: "0x1",
     order: "DESC",
@@ -52,5 +48,12 @@ async function main() {
   }
 }
 
+async function setup() {
+  await Moralis.start({
+    apiKey: process.env.MORALIS_API_KEY!,
+  });
+}
+
+await setup();
 setInterval(() => main().catch(console.error), INTERVAL);
 main().catch(console.error);
